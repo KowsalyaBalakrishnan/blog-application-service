@@ -1,19 +1,6 @@
 spring:
-  # Swagger 3 throws error - failed to start bean 'documentationpluginsbootstrapper' .
-  # Hence add below note
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
-  datasource:
-    url: jdbc:mysql://localhost:3306/microservices?useSSL=false&serverTimezone=UTC
-    username: root
-    password: MySqlServer@0721$#
-    #driverClassName: com.mysql.jdbc.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-#      dialect: org.hibernate.dialect.SQLServer2012Dialect
-      ddl-auto: update
+  profiles:
+    active: prod
 
 # In Memory Auth is added , hence commenting the below userdetails
 #  security:
