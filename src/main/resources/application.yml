@@ -1,4 +1,9 @@
 spring:
+  # Swagger 3 throws error - failed to start bean 'documentationpluginsbootstrapper' .
+  # Hence add below note
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     url: jdbc:mysql://localhost:3306/microservices?useSSL=false&serverTimezone=UTC
     username: root
@@ -23,3 +28,8 @@ logging:
     org:
       springframework:
         security: DEBUG
+
+#JWT Properties
+app:
+  jwt-secret: JWTSecretKeyValue
+  jwt-expiration-milliseconds: 3600000

@@ -12,6 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,6 +25,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                                                                         WebRequest request) {
         ExceptionDTO exceptionDTO = new ExceptionDTO(LocalDateTime.now(), exception.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(exceptionDTO, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(BlogAPIException.class)
+    public ResponseEntity<ExceptionDTO> handleBlogAPIException(BlogAPIException exception,
+                                                               WebRequest webRequest){
+        ExceptionDTO errorDetails = new ExceptionDTO(LocalDateTime.now(), exception.getMessage(),
+                webRequest.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
     // Global specific exception
